@@ -34,6 +34,7 @@ int main(int argc, char **argv)
 		for(i=1; i<16;i=i+2,j++){
 			arrayGrid[i] = arrayGrid[i] <<1;
 			arrayGrid[i]= arrayGrid[i] | (1<<j);
+			arrayGrid[i]= arrayGrid[i] & 0xff;
 		}
 		j=0;
 
