@@ -14,6 +14,8 @@
 #include <stdint.h>
 #include <sys/ioctl.h>
 #include <iostream>
+#include <sstream>
+#include <cstdlib>
 
 I2CControler::I2CControler() {
 	// TODO Auto-generated constructor stub
@@ -56,10 +58,13 @@ int I2CControler::init(int devAddr){
 
 int I2CControler::translator(int gridArray[16]){
 	int dataAddress =0x00;
+	stringstream functionCall;
+
 	for(int i=0;i<16;i++){
 		//Translate to correct order;
-		writeToDevice(dataAddress+i, gridArray[i]);
-
+		//writeToDevice(dataAddress+i, gridArray[i]);
+		functionCall <<"i2cset 3 0x70 " << dataAddress+i << " " << gridArray[i];
+		system(functionCall.str().c_str());
 	}
 
 	return(1);
