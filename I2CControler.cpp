@@ -25,7 +25,7 @@ I2CControler::~I2CControler() {
 using namespace std;
 int I2CControler::writeToDevice(int dataAddr,int value){
 	int file;
-	string filename = "/dev/i2c3";
+	string filename = "/dev/i2c-3";
 	int buffer[2];
 	if ((file = open(filename.c_str(),O_RDWR)) < 0)
 	    return(0);
