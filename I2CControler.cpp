@@ -63,10 +63,11 @@ int I2CControler::translator(int gridArray[16]){
 	for(int i=0;i<16;i++){
 		//Translate to correct order;
 		//writeToDevice(dataAddress+i, gridArray[i]);
-		functionCall <<"i2cset 3 0x70 " << dataAddress+i << " " << gridArray[i];
+		functionCall <<"i2cset -y 3 0x70 " << dataAddress+i << " " << gridArray[i];
 
 		cout << functionCall.str() << endl;
 		system(functionCall.str().c_str());
+		functionCall.str("");
 	}
 
 	return(1);
