@@ -12,14 +12,13 @@ using namespace std;
 int main(int argc, char **argv)
 {
 	I2CControler i2ccontroller;
-	//i2ccontroller.init(0x70);
+	i2ccontroller.init();
 
 	int arrayGrid[16];
 	int i;
 	for( i=0; i<16;i++){
 		arrayGrid[i] =0b00000000;
 	}
-	//i2ccontroller.writeToDevice(0x00,0xFF);
 	int j;
 
 	while(1){
