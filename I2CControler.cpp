@@ -25,35 +25,19 @@ I2CControler::~I2CControler() {
 	// TODO Auto-generated destructor stub
 }
 using namespace std;
-int I2CControler::writeToDevice(int dataAddr,int value){
-	int file;
-	string filename = "/dev/i2c-3";
-	int buffer[2];
-	if ((file = open(filename.c_str(),O_RDWR)) < 0){
-		cout << "Open Failed" << endl;
-		return(0);
-	}
-	if (ioctl(file,I2C_SLAVE,0x70) < 0){
-		cout << "IOCTL Failed" << endl;
-		return(0);
-	}
-	buffer[0] = dataAddr;
-	buffer[1] = value;
-	if (write(file, buffer, 2) != 2){
-		cout << "Write Failed" << endl;
-		return(0);
-	}
-	close(file);
-	return(1);
-}
 
-int I2CControler::init(int devAddr){
-	devAddress = devAddr;
-	writeToDevice(0x21,1);
-	writeToDevice(0xE8,1);
-	writeToDevice(0x81,1);
-	return(1);
+int I2CControler::init(){
+	stringstream functionCall;
 
+	functionCall <<"i2cset -y 3 0x70 0x21";
+	system(functionCall.str().c_str());
+	functionCall.str("");
+	functionCall <<"i2cset -y 3 0x70 0xE8";
+	system(functionCall.str().c_str());
+	functionCall.str("");
+	functionCall <<"i2cset -y 3 0x70 0x81";	
+	system(functionCall.str().c_str());
+	return(1);
 }
 
 int I2CControler::translator(int gridArray[16]){
