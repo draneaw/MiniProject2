@@ -13,9 +13,7 @@ public:
 	I2CControler();
 	virtual ~I2CControler();
 
-	int devAddress;
-	int writeToDevice(int dataAddr,int value);
-	int init(int devAddr);
+	int init();
 	int translator(int gridArray[16]);
 };
 
